@@ -316,7 +316,15 @@ export default function App() {
 
         {/* Login Card */}
         <div className="relative z-10 max-w-2xl w-full mx-4">
-          <div className="bg-gradient-to-br from-[#3d2a4d] to-[#2a3a4d] border-4 border-[#f4a460] rounded-lg p-8 md:p-12 shadow-2xl">
+          <div className="relative bg-gradient-to-br from-[#3d2a4d] to-[#2a3a4d] border-4 border-[#f4a460] rounded-lg p-8 md:p-12 shadow-2xl">
+            {/* Corner decorations overlay */}
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#f4a460]" />
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#f4a460]" />
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#f4a460]" />
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#f4a460]" />
+            </div>
+
             {/* Scanline effect */}
             <div className="absolute inset-0 pointer-events-none opacity-20 rounded-lg">
               <div className="h-full w-full" style={{
@@ -376,15 +384,6 @@ export default function App() {
                   </div>
                 )}
               </div>
-
-              {/* Corner decorations - at the edge */}
-              {/* Corner decorations */}
-              {/* Corner decorations */}
-              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#f4a460]" />
-              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#f4a460]" />
-              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#f4a460]" />
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#f4a460]" />
-
             </div>
           </div>
 
