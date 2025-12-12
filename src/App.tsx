@@ -75,7 +75,7 @@ export default function App() {
   useEffect(() => {
     const checkUnlockTime = () => {
       const now = new Date();
-      const unlockTime = new Date('2025-12-12T13:25:00');
+      const unlockTime = new Date('2025-12-13T09:30:00');
       setIsUnlocked(now >= unlockTime);
     };
     checkUnlockTime();
