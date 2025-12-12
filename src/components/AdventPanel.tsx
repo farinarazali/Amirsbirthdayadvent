@@ -35,8 +35,8 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
       <motion.button
         className={`w-full relative ${isSpecial ? 'col-span-2 aspect-[2/0.93]' : 'aspect-square'}`}
         initial={{ scale: 0, rotate: -180 }}
-        animate={{ 
-          scale: 1, 
+        animate={{
+          scale: 1,
           rotate: 0,
           transition: {
             delay: id * 0.1,
@@ -45,7 +45,7 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
             damping: 15,
           }
         }}
-        whileHover={{ 
+        whileHover={{
           scale: isLocked ? 1.0 : 1.1,
           rotate: isLocked ? 0 : [0, -5, 5, -5, 0],
           transition: { duration: 0.3 }
@@ -55,15 +55,14 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
         disabled={isLocked}
       >
         <motion.div
-          className={`absolute inset-0 rounded-lg border-4 ${
-            isLocked
+          className={`absolute inset-0 rounded-lg border-4 ${isLocked
               ? 'border-gray-600 bg-gradient-to-br from-gray-700 to-gray-800 opacity-50'
               : isSpecial
                 ? 'border-[#FFD700] bg-gradient-to-br from-[#5a3a7d] to-[#3a5a5d]'
-                : isOpened 
-                  ? 'border-[#f4a460] bg-gradient-to-br from-[#3d2a4d] to-[#2a4d3d]' 
+                : isOpened
+                  ? 'border-[#f4a460] bg-gradient-to-br from-[#3d2a4d] to-[#2a4d3d]'
                   : 'border-[#8b9dc3] bg-gradient-to-br from-[#4a3a5d] to-[#2a3a4d]'
-          } shadow-lg backdrop-blur-sm flex items-center justify-center overflow-hidden`}
+            } shadow-lg backdrop-blur-sm flex items-center justify-center overflow-hidden`}
           animate={isLocked ? {} : isSpecial ? {
             boxShadow: [
               '0 0 30px rgba(255,215,0,0.4)',
@@ -86,7 +85,7 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
         >
           {/* Glitch effect overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent" />
-          
+
           {/* Locked state - X mark */}
           {isLocked ? (
             <motion.div
@@ -100,10 +99,9 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
           ) : (
             <>
               {/* Door number */}
-              <motion.span 
-                className={`relative z-10 pixel-text tracking-wider ${
-                  isSpecial ? 'text-[#FFD700]' : 'text-[#8b9dc3]'
-                }`}
+              <motion.span
+                className={`relative z-10 pixel-text tracking-wider ${isSpecial ? 'text-[#FFD700]' : 'text-[#8b9dc3]'
+                  }`}
                 animate={isSpecial ? {
                   color: ['#FFD700', '#FFA500', '#FFD700'],
                   scale: [1, 1.05, 1],
@@ -119,18 +117,14 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
               </motion.span>
 
               {/* Corner decorations */}
-              <div className={`absolute top-1 left-1 w-2 h-2 border-t-2 border-l-2 ${
-                isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
-              }`} />
-              <div className={`absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 ${
-                isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
-              }`} />
-              <div className={`absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 ${
-                isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
-              }`} />
-              <div className={`absolute bottom-1 right-1 w-2 h-2 border-b-2 border-r-2 ${
-                isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
-              }`} />
+              <div className={`absolute top-1 left-1 w-2 h-2 border-t-2 border-l-2 ${isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
+                }`} />
+              <div className={`absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 ${isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
+                }`} />
+              <div className={`absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 ${isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
+                }`} />
+              <div className={`absolute bottom-1 right-1 w-2 h-2 border-b-2 border-r-2 ${isSpecial ? 'border-[#FFD700]/70' : 'border-[#8b9dc3]/50'
+                }`} />
             </>
           )}
         </motion.div>
@@ -142,10 +136,11 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/85 z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
               onClick={() => setShowModal(false)}
             />
 
@@ -158,17 +153,16 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
             >
               <motion.div
                 className="relative max-w-lg w-full bg-gradient-to-br from-[#3d2a4d] to-[#2a3a4d] border-4 border-[#f4a460] rounded-lg shadow-2xl overflow-hidden"
-                initial={{ scale: 0, rotate: -10 }}
-                animate={{ 
-                  scale: 1, 
-                  rotate: 0,
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{
+                  scale: 1,
+                  opacity: 1,
                   transition: {
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 20,
+                    duration: 0.2,
+                    ease: 'easeOut'
                   }
                 }}
-                exit={{ scale: 0, rotate: 10 }}
+                exit={{ scale: 0.9, opacity: 0, transition: { duration: 0.15 } }}
               >
                 {/* Scanline effect */}
                 <div className="absolute inset-0 pointer-events-none opacity-20">
@@ -196,9 +190,9 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
                   {image && (
                     <motion.div
                       className="mb-6 rounded-lg overflow-hidden border-2 border-[#8b9dc3]"
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.15 }}
                     >
                       <img
                         src={image}
@@ -210,9 +204,9 @@ export function AdventPanel({ id, message, image, isOpened, isLocked = false, is
 
                   <motion.div
                     className="pixel-text text-center text-[#8b9dc3] leading-relaxed p-4 bg-black/20 rounded border border-[#8b9dc3]/30"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.15, delay: 0.05 }}
                   >
                     {message}
                   </motion.div>

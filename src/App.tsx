@@ -15,42 +15,42 @@ interface PanelContent {
 }
 
 const panelContents: PanelContent[] = [
-  { 
-    id: 1, 
-    message: "Let's have breakfast! Onwards to Butter & Spice PJ 🚀", 
+  {
+    id: 1,
+    message: "Let's have breakfast! Onwards to Butter & Spice PJ 🚀",
     image: butterSpiceImage
   },
   { id: 2, message: "Ready for your first surprise? Request for access to reward #1!" },
-  { 
-    id: 3, 
+  {
+    id: 3,
     message: "UPSKILL QUEST - Create a world in the palm of your hands at Taman Hati Studio 🌿",
     image: plantImage
   },
-  { 
+  {
     id: 4,
     message: "SAVE POINT - Fuel up with dessert at ONO Cafe 🍵",
     image: matchaTiramisuImage
   },
   { id: 5, message: "POWER UP! You've unlocked an upgraded skin!" },
   {
-    id: 6, 
+    id: 6,
     message: "INVENTORY EXPANSION - Seek out rare loot at Amcorp Mall 🪙",
     image: amcorpMallImage
   },
   { id: 7, message: "Pause the quest? Prayers before pursuing the final boss" },
-  { 
-    id: 8,  
+  {
+    id: 8,
     message: "Strategise for battle. Scout the battlefield: Pearl Point Shopping Mall 🛍️",
     image: pearlPointImage
   },
-  { 
-    id: 9, 
+  {
+    id: 9,
     message: "FINAL BOSS BATTLE: King of The Grill Buffet 🦞🥩",
     image: kingOfGrillImage
   },
   { id: 10, message: "You've conquered the final boss! Your final rewards await you." },
-  { 
-    id: 11, 
+  {
+    id: 11,
     message: "🎉 VICTORY! 🎉 Here's to an amazing year with endless possibilities. Your fire is infinite, and so is my love for you. Happy Birthday, sayang! 🎂✨",
     image: "https://drive.google.com/thumbnail?id=1DuJWAg3p1Tta3CzQnnF4QFD8NotEASHk&sz=w700"
   },
@@ -87,6 +87,18 @@ export default function App() {
     const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
     setAudioContext(ctx);
     return () => ctx.close();
+  }, []);
+
+  // Preload images for faster panel opening
+  useEffect(() => {
+    const imagesToPreload = panelContents
+      .filter(panel => panel.image)
+      .map(panel => panel.image as string);
+
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
   }, []);
 
   // Comet animation
@@ -140,27 +152,27 @@ export default function App() {
   // Whoosh sound for successful login
   const playWhooshSound = () => {
     if (!audioContext) return;
-    
+
     // Create multiple oscillators for a richer whoosh effect
     const createWhoosh = (startFreq: number, endFreq: number, delay: number) => {
       const osc = audioContext.createOscillator();
       const gain = audioContext.createGain();
-      
+
       osc.connect(gain);
       gain.connect(audioContext.destination);
-      
+
       osc.type = 'sine';
       const now = audioContext.currentTime + delay;
       osc.frequency.setValueAtTime(startFreq, now);
       osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.6);
-      
+
       gain.gain.setValueAtTime(0.4, now);
       gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
-      
+
       osc.start(now);
       osc.stop(now + 0.6);
     };
-    
+
     createWhoosh(800, 200, 0);
     createWhoosh(600, 150, 0.05);
     createWhoosh(1000, 250, 0.1);
@@ -318,13 +330,12 @@ export default function App() {
                     type="text"
                     value={player1Name}
                     onChange={handlePlayer1Change}
-                    className={`w-full px-4 py-3 md:py-4 bg-[#2a1a3d] border-2 rounded-lg pixel-text text-sm md:text-base ${
-                      player1Valid 
-                        ? 'border-green-500 text-green-400' 
-                        : player1Name 
-                          ? 'border-red-500 text-red-400' 
+                    className={`w-full px-4 py-3 md:py-4 bg-[#2a1a3d] border-2 rounded-lg pixel-text text-sm md:text-base ${player1Valid
+                        ? 'border-green-500 text-green-400'
+                        : player1Name
+                          ? 'border-red-500 text-red-400'
                           : 'border-[#8b9dc3] text-[#8b9dc3]'
-                    } focus:outline-none focus:border-[#f4a460] transition-colors`}
+                      } focus:outline-none focus:border-[#f4a460] transition-colors`}
                     placeholder="Enter name..."
                   />
                 </div>
@@ -338,13 +349,12 @@ export default function App() {
                     type="text"
                     value={player2Name}
                     onChange={handlePlayer2Change}
-                    className={`w-full px-4 py-3 md:py-4 bg-[#2a1a3d] border-2 rounded-lg pixel-text text-sm md:text-base ${
-                      player2Valid 
-                        ? 'border-green-500 text-green-400' 
-                        : player2Name 
-                          ? 'border-red-500 text-red-400' 
+                    className={`w-full px-4 py-3 md:py-4 bg-[#2a1a3d] border-2 rounded-lg pixel-text text-sm md:text-base ${player2Valid
+                        ? 'border-green-500 text-green-400'
+                        : player2Name
+                          ? 'border-red-500 text-red-400'
                           : 'border-[#8b9dc3] text-[#8b9dc3]'
-                    } focus:outline-none focus:border-[#f4a460] transition-colors`}
+                      } focus:outline-none focus:border-[#f4a460] transition-colors`}
                     placeholder="Enter name..."
                   />
                 </div>
